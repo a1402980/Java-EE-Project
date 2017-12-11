@@ -14,6 +14,10 @@ import javax.persistence.Persistence;
 
 import org.junit.Test;
 
+import com.book.businessobject.Book;
+import com.book.businessobject.Category;
+import com.book.businessobject.Writer;
+
 
 public class QueryTest {
 
@@ -81,34 +85,20 @@ public class QueryTest {
 			tx = em.getTransaction();
 			tx.begin();
 
-			Client c1 = new Client("PLATINI", "MICHEL", "Ex footeux");
-			Address a1 = new Address("75000", "Champs elyse", "Paris");
-			c1.setAddress(a1);
-
-			c1.addExternalAccount(new ExternalAccount("010101", "Account A"));
-			c1.addExternalAccount(new ExternalAccount("020202", "Account B"));
-
-			InternalAccount ci1 = new InternalAccount("1", "desc1", 1000);
-			InternalAccount ci2 = new InternalAccount("2", "desc2", 2000);
-
-			ci1.addOperation(new Operation("Boucher", 10, new Date()));
-			ci1.addOperation(new Operation("Charcutier", 12, new Date()));
-
-			ci2.addOperation(new Operation("Plasma", 10000, new Date()));
-			ci2.addOperation(new Operation("Ipod", 450, new Date()));
-			ci2.addOperation(new Operation("Nounou", 700, new Date()));
-
-			c1.addInternalAccount(ci1);
-			c1.addInternalAccount(ci2);
-
-
-
-			Book b = new Book();
-			b.addClient(c1);
-			b.addClient(c2);
-
-
-			em.persist(b);
+			Category c1 = new Category("fdfd");
+			
+			Writer w1 = new Writer("Dan", "Brown", "New Hampshire Street 12");
+			Book b1 = new Book("asd","1234","asdasd", new Date() ,12,false,"asdasd");
+			c1.addBook(b1);
+		
+			
+			
+			//b1.addWriter(w1);
+			//b1.addCategory(c1);
+			
+			em.persist(b1);
+			
+			
 			
 			tx.commit();
 
