@@ -3,18 +3,17 @@
   <groupId>Java-EE-Project</groupId>
   <artifactId>Java-EE-Project</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
 <packaging>war</packaging>
   <dependencies>
-  	<dependency>
-		<groupId>javax.faces</groupId>
-		<artifactId>javax.faces-api</artifactId>
-		<version>2.2</version>
+	<dependency>
+		<groupId>org.eclipse.persistence</groupId>
+		<artifactId>eclipselink</artifactId>
+		<version>2.5.0</version>
 	</dependency>
-  	<dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>eclipselink</artifactId>
-	  <version>2.5.0</version>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>4.3.6.Final</version>
 	</dependency>
     <dependency>
       <groupId>hsqldb</groupId>
@@ -22,10 +21,15 @@
       <version>1.8.0.10</version>
     </dependency>
     <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.11</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>jboss</groupId>
       <artifactId>jboss-common</artifactId>
       <version>3.2.3</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>jboss</groupId>
@@ -63,15 +67,10 @@
       <version>3.2.5.Final</version>
     </dependency>
     <dependency>
-    	<groupId>org.jboss.logging</groupId>
-    	<artifactId>jboss-logging</artifactId>
-    	<version>3.1.4.GA</version>
-    </dependency>
-    <dependency>
 		<groupId>org.jboss</groupId>
 		<artifactId>jboss-reflect</artifactId>
 		<version>2.2.0.GA</version>
-	</dependency>
+    </dependency>
 	<dependency>
 		<groupId>xerces</groupId>
 		<artifactId>xercesImpl</artifactId>
@@ -112,12 +111,6 @@
 	   <artifactId>dom4j</artifactId>
 	   <version>1.6.1</version>
 	   <scope>provided</scope>
-	</dependency>
- 	<dependency>
-     <groupId>org.hibernate</groupId>
-    	<artifactId>hibernate-entitymanager</artifactId>
-    	<version>5.2.6.Final</version>
-    	<scope>provided</scope>
 	</dependency>
   </dependencies>
   <properties>
