@@ -113,6 +113,7 @@
 	   <scope>provided</scope>
 	</dependency>
   </dependencies>
+
   <properties>
   	<maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -129,6 +130,17 @@
         	<artifactId>wildfly-maven-plugin</artifactId>
         	<version>1.0.2.Final</version>
         </plugin>
+         <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.20.1</version>
+        <configuration>
+          <excludes>
+            <exclude>**/ChreateSchemaTest.java</exclude>
+            <exclude>**/PersistenceTest.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>

@@ -29,5 +29,6 @@ public class ChreateSchemaTest extends TestCase {
 		cfg.setProperty("hibernate.connection.username", "sa");
 		
 		new SchemaExport(cfg).setOutputFile("schema.ddl").create(false, true);
+		
 	}
 }
