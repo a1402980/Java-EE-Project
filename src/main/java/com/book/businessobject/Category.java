@@ -34,11 +34,9 @@ public class Category {
 		this.books = new HashSet<Book>();
 	}	
 	
-	public Category(long id, String name, Set<Book> books)
+	public Category(String name)
 	{
-		this.id = id;
 		this.name = name;
-		this.books = books;
 		this.books = new HashSet<Book>();
 	}
 
