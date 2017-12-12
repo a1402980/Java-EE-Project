@@ -13,7 +13,7 @@
         <!-- for managed bean name=cart and list named items -->
          <ui:repeat value="#{cart.items}" var="item">
          	<h:form>
-         		<h:commandLink action="bookList">
+         		<h:commandLink action="bookInfo">
             	<h:commandButton value="#{item}" />
             	</h:commandLink>
             </h:form>
