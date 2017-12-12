@@ -34,6 +34,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ibraa/Desktop/rootJavaEE/Labs/Java-EE-Project/src/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mikko/Documents/HES-SO/JavaEE/Labs/JavaEEproject/src/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
