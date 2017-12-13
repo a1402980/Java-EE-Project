@@ -12,17 +12,21 @@ import com.book.businessobject.Writer;
 @Local
 public interface BookInterface {
 
-	Book getBook(String title, String authorLastname);
+	public Book getBook(String title, String authorLastname);
+	
+	public List<Book> getAllBooks();
 	
 	public List<Book> getAllBooksFromAuthor(String authorLastName);
+	
+	public void addData();
 
 	//void transfer(Account compteSrc, Account compteDest, int montant) throws Exception;
 
-	List<Writer> getWriters();
+	public List<Writer> getWriters();
 
-	Writer getWriter(long writerid);
+	public Writer getWriter(long writerid);
 	
-	List<Category> getCategories();
+	public List<Category> getCategories();
 
-	Category getCategory(long categoryid);
+	public Category getCategory(long categoryid);
 }

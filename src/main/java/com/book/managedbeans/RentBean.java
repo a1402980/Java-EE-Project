@@ -1,5 +1,6 @@
 package com.book.managedbeans;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,25 +8,37 @@ import javax.annotation.PostConstruct;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import com.book.bookservice.BookInterface;
 import com.book.businessobject.Book;
-import com.book.businessobject.Category;
-import com.book.businessobject.Writer;
-
 
 public class RentBean {
 	
-	private Book book;
+	private BookInterface bI;
 	private List<Book> books;
-	private List<Writer> writers;
-	private List<Category> categories;
 	
 	@PostConstruct
 	public void initialize() throws NamingException 
 	{	
 	    // use JNDI to inject reference to bank EJB
 	    InitialContext ctx = new InitialContext();
-		book = (Book) ctx.lookup("java:global/Java-EE-Project/BookBean!com.book.bookservice.Book");  
-				
+		bI = (BookInterface) ctx.lookup("java:global/Java-EE-Project-0.0.1-SNAPSHOT/BookBean!com.book.bookservice.BookInterface");  
+		
+		
+	}
+	public List<Book> getBooks()
+	{
+		books = bI.getAllBooks();
+		System.out.println("************************************");
+		System.out.println("************************************");
+		System.out.println(books.size());
+		return books;
+	}
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+	public void performDataAdding()
+	{
+		bI.addData();
 	}
 	    
 

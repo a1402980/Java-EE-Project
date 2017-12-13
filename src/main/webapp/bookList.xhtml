@@ -11,16 +11,13 @@
         
         <!-- example of foreach loop -->
         <!-- for managed bean name=cart and list named items -->
-         <ui:repeat value="#{cart.items}" var="item">
-         	<h:form>
-         		<h:commandLink action="bookInfo">
-            	<h:commandButton value="#{item}" />
-            	</h:commandLink>
-            </h:form>
-        </ui:repeat>   
-        
-        
-        
+       
+		<ui:repeat value="#{rentBean.books}" var="book">
+			<div class="bookStyle">
+		      <h:graphicImage value="#{book.cover}" styleClass="bookCover"/><br></br>
+		           <h:outputText value="#{book.title}" />
+		    </div>
+	     </ui:repeat>  
     </ui:define>
 </ui:composition>
 </html>

@@ -141,7 +141,6 @@
         <version>2.20.1</version>
         <configuration>
           <excludes>
-            <exclude>**/ChreateSchemaTest.java</exclude>
             <exclude>**/PersistenceTest.java</exclude>
           </excludes>
         </configuration>
