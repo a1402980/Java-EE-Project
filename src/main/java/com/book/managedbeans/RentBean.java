@@ -1,7 +1,5 @@
 package com.book.managedbeans;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -18,7 +16,7 @@ public class RentBean {
 	private BookInterface bI;
 	private List<Book> books;
 	private Book book;
-	private String rentResult;
+	private String rentResult = null;
 	
 	@PostConstruct
 	public void initialize() throws NamingException 
@@ -27,6 +25,10 @@ public class RentBean {
 	    InitialContext ctx = new InitialContext();
 		bI = (BookInterface) ctx.lookup("java:global/Java-EE-Project-0.0.1-SNAPSHOT/BookBean!com.book.bookservice.BookInterface");  
 		
+		if(bI != null)
+		{
+			bI.addData();
+		}
 	}
 	public String getAllBooks()
 	{	
@@ -34,7 +36,8 @@ public class RentBean {
 		System.out.println("************************************");
 		System.out.println("************************************");
 		System.out.println(books.size());
-		return "bookList";
+		
+		return "bookList?faces-redirect=true";
 	}
 	public List<Book> getBooks()
 	{
@@ -51,12 +54,8 @@ public class RentBean {
 	
 	public String viewBook(long bookId)
 	{
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-		
 		book = bI.getBookById(bookId);
-		System.out.println(book);
-		return "bookInfo";
+		return "bookInfo?faces-redirect=true";
 	}
 	
 	public Book getBook() {
@@ -68,9 +67,8 @@ public class RentBean {
 	
 	public String rentBook(Book rentedBook){
 		
-		rentResult = bI.rent(rentedBook);
-		
-		return "bookInfo";
+		this.rentResult = bI.rent(rentedBook);
+		return "bookInfo?faces-redirect=true";
 	}
 	
 	public String getRentResult() {
@@ -80,18 +78,16 @@ public class RentBean {
 		this.rentResult = rentResult;
 	}
 	
-	public String bookByAuthor(Writer author){
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-		System.out.println(author.getId());
+	public String bookByAuthor(Writer author)
+	{
 		books = bI.getAllBooksFromAuthor(author);
-		return "booksByAuthor";
+		return "booksByAuthor?faces-redirect=true";
 	}
 	
-	public String bookByCategory(Category category){
-		System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-		System.out.println(category.getId());
+	public String bookByCategory(Category category)
+	{
 		books = bI.getAllBooksFromCategory(category);
-		return "booksByCategory";
+		return "booksByCategory?faces-redirect=true";
 	}
 
 }

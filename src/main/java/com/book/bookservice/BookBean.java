@@ -64,14 +64,6 @@ public class BookBean implements BookInterface {
 			}
 			return rentResult;
 		}
-		/*public void rent(Person srcAccount, Account destAccount, int amount) {
-			
-			srcAccount = em.persist(srcAccount);
-			destAccount = em.persist(destAccount);
-			srcAccount.debit(amount);
-			destAccount.credit(amount);
-		}*/
-
 		public List<Writer> getWriters() {
 			return em.createQuery("FROM Writer").getResultList();
 		}
