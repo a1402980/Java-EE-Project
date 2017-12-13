@@ -25,8 +25,7 @@ public class Writer {
 	private String firstname;
 	@Column(name="lastname")
 	private String lastname;
-	@Column(name="address")
-	private String address;
+
 	
 	@OneToMany(mappedBy="author", cascade = CascadeType.ALL)
 	private Set<Book> books;
@@ -35,11 +34,10 @@ public class Writer {
 		this.books = new HashSet<Book>();
 	}
 	
-	public Writer(String firstname, String lastname, String address)
+	public Writer(String firstname, String lastname)
 	{
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.address = address;
 		this.books = new HashSet<Book>();
 	}
 
@@ -55,9 +53,7 @@ public class Writer {
 		return lastname;
 	}
 
-	public String getAddress() {
-		return address;
-	}
+
 
 	public Set<Book> getBooks() {
 		return books;
@@ -75,9 +71,6 @@ public class Writer {
 		this.lastname = lastname;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 	public void setBooks(Set<Book> books) {
 		this.books = books;

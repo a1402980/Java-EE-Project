@@ -82,46 +82,46 @@ public class PersistenceTest {
 			EntityManager em = emf.createEntityManager();
 			tx = em.getTransaction();
 			tx.begin();
-
-			Category c = new Category("Fiction");
-			Category c2 = new Category("Thriller");
-			Category c3 = new Category("Novel");
-			Category c4 = new Category("Drama");
-			Category c5 = new Category("Mystery");
-			Category c6 = new Category("Adventure");
-			Category c7 = new Category("Romance");
-			Category c8 = new Category("Fantasy");
 			
-			Writer w = new Writer("George", "Orwell", "Sierre");
-			Writer w1 = new Writer("Jake", "Pratt", "NYC");
-			Writer w2 = new Writer("John", "Smith", "Sierre");
-			Writer w3 = new Writer("Jake", "Pratt", "NYC");
-			Writer w4 = new Writer("John", "Smith", "Sierre");
-			Writer w5 = new Writer("Jake", "Pratt", "NYC");
-			Writer w6 = new Writer("John", "Smith", "Sierre");
-			Writer w7 = new Writer("Jake", "Pratt", "NYC");
-			Writer w8 = new Writer("John", "Smith", "Sierre");
-			Writer w9 = new Writer("Jake", "Pratt", "NYC");
 			
-			Book b = new Book("1 mile", "I-1234567890", "London House", "10-10-2016", 100, false, "Awesome");
-			Book b2 = new Book("test 2", "I-1234567", "idk", "10-10-2006", 100, true, "good");
-			Book b3 = new Book("test 3", "I-1234567", "idk", "10-10-2006", 100, true, "good");
-			Book b4 = new Book("test 4", "I-1234567", "idk", "10-10-2006", 100, true, "good");
-			Book b5 = new Book("test 5", "I-1234567", "idk", "10-10-2006", 100, true, "good");
+			Category c1 = new Category("Fantasy");
+			Writer w1 = new Writer("J.K", "Rowling");
+			Book b1 = new Book("Harry Potter and the Philosopher's Stone", "I-1234567890", "Bloomsbury", "01-01-1997", 223, false, "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg");
 			
-			w.writeBook(b2);
-			w.writeBook(b);
-			w.writeBook(b3);
+			Category c2 = new Category("Romance");
+			Writer w2 = new Writer("Margaret", "Mitchell");
+			Book b2 = new Book("Gone with the Wind", "I-1234567", "Warner Books", "01-01-1936", 1037, true, "https://upload.wikimedia.org/wikipedia/en/6/6b/Gone_with_the_Wind_cover.jpg");
+			
+			Category c3 = new Category("Fiction");
+			Writer w3 = new Writer("George", "Orwell");
+			Book b3 = new Book("Nineteen Eighty-Four", "I-1234567", "WSOY", "01-01-1949", 100, true, "https://upload.wikimedia.org/wikipedia/commons/6/6b/1984-Big-Brother.jpg");
+			Book b4 = new Book("Animal Farm", "I-1234567", "TAMMI", "01-01-1969", 126, false, "https://upload.wikimedia.org/wikipedia/commons/f/fb/Animal_Farm_-_1st_edition.jpg");
+			
+			
+			Category c4 = new Category("Mystery");
+			Writer w4 = new Writer("Dan", "Brown");
+			Book b5 = new Book("The Da Vinci Code", "I-1234567", "OTAVA", "10-04-2003", 454, false, "https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg");
+			
+			
+			w1.writeBook(b1);
+			c1.addBook(b1);
+			
 			w2.writeBook(b2);
-			w2.writeBook(b4);
-			w2.writeBook(b5);
-			c.addBook(b);
 			c2.addBook(b2);
-			c2.addBook(b3);
-			c.addBook(b4);
-			c.addBook(b5);
-			em.persist(c);
+			
+			w3.writeBook(b3);
+			w3.writeBook(b4);
+			c3.addBook(b3);
+			c3.addBook(b4);
+			
+			w4.writeBook(b5);
+			c4.addBook(b5);
+			
+			em.persist(c1);
 			em.persist(c2);
+			em.persist(c3);
+			em.persist(c4);
+			
 			tx.commit();
 
 		} catch (Exception e) {
