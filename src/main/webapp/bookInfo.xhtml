@@ -10,9 +10,10 @@
     <ui:define name="content">
         <h:outputLabel value="Transfer result:"></h:outputLabel><h:outputLabel value=" #{transferBean.transactionResult}"></h:outputLabel>
         <br></br>
+        <h:outputText value="#{rentBean.book.title}"/>
         <h:form>
         <h:commandLink action="transferForm">
-         <h:outputText value="Rent bookr" />
+         <h:outputText value="Rent book" />
         </h:commandLink>
         </h:form>
     </ui:define>

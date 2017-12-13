@@ -15,7 +15,9 @@ public class RentBean {
 	
 	private BookInterface bI;
 	private List<Book> books;
+	private Book book;
 	
+
 	@PostConstruct
 	public void initialize() throws NamingException 
 	{	
@@ -41,12 +43,21 @@ public class RentBean {
 		bI.addData();
 	}
 	
-	public String viewBook(int bookId)
+	public String viewBook(long bookId)
 	{
 		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		
+		book = bI.getBookById(bookId);
+		System.out.println(book);
 		return "bookInfo";
+	}
+	
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	    
 
