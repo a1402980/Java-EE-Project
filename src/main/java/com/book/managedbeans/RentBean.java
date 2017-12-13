@@ -16,7 +16,9 @@ public class RentBean {
 	private BookInterface bI;
 	private List<Book> books;
 	private Book book;
+	private String rentResult;
 	
+
 
 	@PostConstruct
 	public void initialize() throws NamingException 
@@ -59,6 +61,19 @@ public class RentBean {
 	public void setBook(Book book) {
 		this.book = book;
 	}
-	    
+	
+	public String rentBook(Book rentedBook){
+		
+		rentResult = bI.rent(rentedBook);
+		
+		return "bookInfo";
+	}
+	
+	public String getRentResult() {
+		return rentResult;
+	}
+	public void setRentResult(String rentResult) {
+		this.rentResult = rentResult;
+	}    
 
 }

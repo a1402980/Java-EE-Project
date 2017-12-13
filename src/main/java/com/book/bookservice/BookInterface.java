@@ -31,4 +31,6 @@ public interface BookInterface {
 	public List<Category> getCategories();
 
 	public Category getCategory(long categoryid);
+	
+	public String rent(Book book);
 }
