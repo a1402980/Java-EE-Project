@@ -40,6 +40,13 @@ public class RentBean {
 	{
 		bI.addData();
 	}
+	
+	public String viewBook(int bookId)
+	{
+		
+		
+		return "bookInfo";
+	}
 	    
 
 }

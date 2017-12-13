@@ -14,8 +14,12 @@
        
 		<ui:repeat value="#{rentBean.books}" var="book">
 			<div class="bookStyle">
+			<h:form>
+			<h:commandLink value = "" action = "#{rentBean.viewBook(book.id)}" > 
 		      <h:graphicImage value="#{book.cover}" styleClass="bookCover"/><br></br>
 		           <h:outputText value="#{book.title}" />
+		    </h:commandLink>
+		    </h:form>
 		    </div>
 	     </ui:repeat>  
     </ui:define>
