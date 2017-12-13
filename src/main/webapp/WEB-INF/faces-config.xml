@@ -25,5 +25,12 @@
 			<to-view-id>/bookInfo.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>bookInfo.xhtml</display-name>
+		<from-view-id>/bookInfo.xhtml</from-view-id>
+		<navigation-case>
+			<to-view-id>/bookInfo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>
