@@ -16,13 +16,13 @@
         <h5>Rented: <h:outputText value="#{rentBean.book.rented}" styleClass="#{rentBean.book.rented}" /></h5>
         
          <h:form>
-	        <h:commandLink action ="#{rentBean.bookByAuthor(rentBean.book.author)}">       
+	        <h:commandLink action = "#{rentBean.bookByAuthor(rentBean.book.author)}">       
         <h5>Author: <h:outputText value="#{rentBean.book.author.firstname}"/>&nbsp;<h:outputText value="#{rentBean.book.author.lastname}"/></h5>
  	        </h:commandLink>
         </h:form>       
         
         <h:form>
-	        <h:commandLink action ="#{rentBean.bookByCategory(rentBean.book.category)}">
+	        <h:commandLink action = "#{rentBean.bookByCategory(rentBean.book.category)}">
 	        	<h5>Category: <h:outputText value="#{rentBean.book.category.name}"/></h5>
 	        </h:commandLink>
         </h:form>

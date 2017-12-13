@@ -18,7 +18,7 @@ import com.book.businessobject.Category;
 import com.book.businessobject.Writer;
 
 @Stateful
-@RolesAllowed(value = {"visitor", "renter", "admin"})
+//@RolesAllowed(value = {"visitor", "renter", "admin"})
 public class BookBean implements BookInterface {
 	
 		@PersistenceContext(name = "bookPU", type=PersistenceContextType.EXTENDED)
@@ -40,13 +40,13 @@ public class BookBean implements BookInterface {
 		}
 		
 		public List<Book> getAllBooksFromCategory(Category category) {
-			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.category.id=:categoryid").setParameter("categorid", category.getId()).getResultList();
+			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.category.id=:categoryid").setParameter("categoryid", category.getId()).getResultList();
 		}
 		public List<Book> getAllBooksFromAuthor(Writer author) {
 			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.author.id=:authorid").setParameter("authorid", author.getId()).getResultList();
 		}
 	
-		@RolesAllowed(value = {"renter", "admin"})
+		//@RolesAllowed(value = {"renter", "admin"})
 		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public String rent(Book book)
 		{

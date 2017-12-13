@@ -28,12 +28,17 @@ public class RentBean {
 		bI = (BookInterface) ctx.lookup("java:global/Java-EE-Project-0.0.1-SNAPSHOT/BookBean!com.book.bookservice.BookInterface");  
 		
 	}
-	public List<Book> getBooks()
-	{
+	public String getAllBooks()
+	{	
 		books = bI.getAllBooks();
 		System.out.println("************************************");
 		System.out.println("************************************");
 		System.out.println(books.size());
+		return "bookList";
+	}
+	public List<Book> getBooks()
+	{
+
 		return books;
 	}
 	public void setBooks(List<Book> books) {
@@ -76,16 +81,16 @@ public class RentBean {
 	}
 	
 	public String bookByAuthor(Writer author){
-		
-		//rentResult = bI.rent(rentedBook);
-		
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		System.out.println(author.getId());
+		books = bI.getAllBooksFromAuthor(author);
 		return "booksByAuthor";
 	}
 	
 	public String bookByCategory(Category category){
-		
-		//rentResult = bI.rent(rentedBook);
-		
+		System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+		System.out.println(category.getId());
+		books = bI.getAllBooksFromCategory(category);
 		return "booksByCategory";
 	}
 
