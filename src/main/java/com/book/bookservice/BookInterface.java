@@ -14,6 +14,8 @@ public interface BookInterface {
 
 	public Book getBook(String title, String authorLastname);
 	
+	public Book getBookById(long id);
+	
 	public List<Book> getAllBooks();
 	
 	public List<Book> getAllBooksFromAuthor(String authorLastName);

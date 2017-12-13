@@ -25,6 +25,14 @@ public class BookBean implements BookInterface {
 			
 			return (Book) query.getSingleResult();
 		}
+		
+		public Book getBookById(long id)
+		{
+			Query query = em.createQuery("FROM Book b WHERE b.id=:id");
+			query.setParameter("id", id);
+			
+			return (Book) query.getSingleResult();
+		}
 		public List<Book> getAllBooks()
 		{
 			return (List<Book>) em.createQuery("SELECT b FROM Book b").getResultList();
