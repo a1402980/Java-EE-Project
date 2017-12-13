@@ -49,3 +49,4 @@ local.properties
 .worksheet
 /target/
 .classpath
+RemoteSystemsTempFiles/.project
