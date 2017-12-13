@@ -27,14 +27,6 @@ public class BookBean implements BookInterface {
 		@Resource 
 		private SessionContext ctx;
 
-		public Book getBook(String title, String authorLastName) {
-			Query query = em.createQuery("FROM Book b WHERE b.title=:title AND b.author.lastname=:authorLastName");
-			query.setParameter("title", title);
-			query.setParameter("authorLastName", authorLastName);
-			
-			return (Book) query.getSingleResult();
-		}
-		
 		public Book getBookById(long id)
 		{
 			Query query = em.createQuery("FROM Book b WHERE b.id=:id");
@@ -46,8 +38,12 @@ public class BookBean implements BookInterface {
 		{
 			return (List<Book>) em.createQuery("SELECT b FROM Book b").getResultList();
 		}
-		public List<Book> getAllBooksFromAuthor(String authorLastName) {
-			return (List<Book>) em.createQuery("SELECT w.books FROM Writer w where w.lastname=:authorLastName").setParameter("authorLastName", authorLastName).getResultList();
+		
+		public List<Book> getAllBooksFromCategory(Category category) {
+			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.category.id=:categoryid").setParameter("categorid", category.getId()).getResultList();
+		}
+		public List<Book> getAllBooksFromAuthor(Writer author) {
+			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.author.id=:authorid").setParameter("authorid", author.getId()).getResultList();
 		}
 	
 		@RolesAllowed(value = {"renter", "admin"})

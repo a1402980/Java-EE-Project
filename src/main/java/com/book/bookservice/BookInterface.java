@@ -12,13 +12,13 @@ import com.book.businessobject.Writer;
 @Local
 public interface BookInterface {
 
-	public Book getBook(String title, String authorLastname);
-	
 	public Book getBookById(long id);
 	
 	public List<Book> getAllBooks();
 	
-	public List<Book> getAllBooksFromAuthor(String authorLastName);
+	public List<Book> getAllBooksFromCategory(Category category);
+	
+	public List<Book> getAllBooksFromAuthor(Writer author);
 	
 	public void addData();
 
