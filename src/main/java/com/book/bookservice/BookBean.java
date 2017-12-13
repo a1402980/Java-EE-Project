@@ -2,6 +2,9 @@ package com.book.bookservice;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -15,10 +18,14 @@ import com.book.businessobject.Category;
 import com.book.businessobject.Writer;
 
 @Stateful
+@RolesAllowed(value = {"visitor", "renter", "admin"})
 public class BookBean implements BookInterface {
 	
 		@PersistenceContext(name = "bookPU", type=PersistenceContextType.EXTENDED)
 		private EntityManager em;
+		
+		@Resource 
+		private SessionContext ctx;
 
 		public Book getBook(String title, String authorLastName) {
 			Query query = em.createQuery("FROM Book b WHERE b.title=:title AND b.author.lastname=:authorLastName");
@@ -42,7 +49,8 @@ public class BookBean implements BookInterface {
 		public List<Book> getAllBooksFromAuthor(String authorLastName) {
 			return (List<Book>) em.createQuery("SELECT w.books FROM Writer w where w.lastname=:authorLastName").setParameter("authorLastName", authorLastName).getResultList();
 		}
-		
+	
+		@RolesAllowed(value = {"renter", "admin"})
 		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public String rent(Book book)
 		{

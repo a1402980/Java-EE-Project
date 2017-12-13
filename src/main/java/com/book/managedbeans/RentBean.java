@@ -18,15 +18,12 @@ public class RentBean {
 	private Book book;
 	private String rentResult;
 	
-
-
 	@PostConstruct
 	public void initialize() throws NamingException 
 	{	
-	    // use JNDI to inject reference to bank EJB
+	    // use JNDI to inject reference to book EJB
 	    InitialContext ctx = new InitialContext();
 		bI = (BookInterface) ctx.lookup("java:global/Java-EE-Project-0.0.1-SNAPSHOT/BookBean!com.book.bookservice.BookInterface");  
-		
 		
 	}
 	public List<Book> getBooks()
