@@ -3,6 +3,8 @@ package com.book.bookservice;
 import java.util.List;
 
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.PersistenceContext;
@@ -40,7 +42,24 @@ public class BookBean implements BookInterface {
 		public List<Book> getAllBooksFromAuthor(String authorLastName) {
 			return (List<Book>) em.createQuery("SELECT w.books FROM Writer w where w.lastname=:authorLastName").setParameter("authorLastName", authorLastName).getResultList();
 		}
-
+		
+		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
+		public String rent(Book book)
+		{
+			String rentResult;
+			
+			if(!book.isRented())
+			{
+				book.setRented(true);
+				em.persist(book);
+				rentResult="You have rented this book!";
+			}
+			else
+			{
+				rentResult="We are sorry. The book is already rented!";
+			}
+			return rentResult;
+		}
 		/*public void rent(Person srcAccount, Account destAccount, int amount) {
 			
 			srcAccount = em.persist(srcAccount);
