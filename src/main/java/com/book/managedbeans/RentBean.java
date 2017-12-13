@@ -43,7 +43,8 @@ public class RentBean {
 	
 	public String viewBook(int bookId)
 	{
-		
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		
 		return "bookInfo";
 	}
