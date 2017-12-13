@@ -10,6 +10,8 @@ import javax.naming.NamingException;
 
 import com.book.bookservice.BookInterface;
 import com.book.businessobject.Book;
+import com.book.businessobject.Category;
+import com.book.businessobject.Writer;
 
 public class RentBean {
 	
@@ -74,6 +76,20 @@ public class RentBean {
 	}
 	public void setRentResult(String rentResult) {
 		this.rentResult = rentResult;
-	}    
+	}
+	
+	public String bookByAuthor(Writer author){
+		
+		//rentResult = bI.rent(rentedBook);
+		
+		return "booksByAuthor";
+	}
+	
+	public String bookByCategory(Category category){
+		
+		//rentResult = bI.rent(rentedBook);
+		
+		return "booksByCategory";
+	}
 
 }
