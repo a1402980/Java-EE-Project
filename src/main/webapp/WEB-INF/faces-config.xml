@@ -29,6 +29,39 @@
 		<display-name>bookInfo.xhtml</display-name>
 		<from-view-id>/bookInfo.xhtml</from-view-id>
 		<navigation-case>
+			<from-outcome>#{rentBean.bookByCategory(rentBean.book.category)}</from-outcome>
+			<to-view-id>/bookInfo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>bookInfo.xhtml</display-name>
+		<from-view-id>/bookInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{rentBean.bookByAuthor(rentBean.book.author)}</from-outcome>
+			<to-view-id>/booksByAuthor.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>bookInfo.xhtml</display-name>
+		<from-view-id>/bookInfo.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{rentBean.bookByCategory(rentBean.book.category)}</from-outcome>
+			<to-view-id>/booksByCategory.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>booksByCategory.xhtml</display-name>
+		<from-view-id>/booksByCategory.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{rentBean.viewBook(book.id)}</from-outcome>
+			<to-view-id>/bookInfo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>booksByAuthor.xhtml</display-name>
+		<from-view-id>/booksByAuthor.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{rentBean.viewBook(book.id)}</from-outcome>
 			<to-view-id>/bookInfo.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>

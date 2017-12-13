@@ -8,20 +8,37 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
+    <div class="bookInfo">
     	<h:outputText value="#{rentBean.rentResult}"/>
         <h1><h:outputText value="#{rentBean.book.title}"/></h1>
         <h:graphicImage value="#{rentBean.book.cover}" styleClass="bookInfoCover"/>
-        <h5>Rented: </h5>
+        
+        <h5>Rented: <h:outputText value="#{rentBean.book.rented}" styleClass="#{rentBean.book.rented}" /></h5>
+        
+         <h:form>
+	        <h:commandLink action ="#{rentBean.bookByAuthor(rentBean.book.author)}">       
+        <h5>Author: <h:outputText value="#{rentBean.book.author.firstname}"/>&nbsp;<h:outputText value="#{rentBean.book.author.lastname}"/></h5>
+ 	        </h:commandLink>
+        </h:form>       
+        
+        <h:form>
+	        <h:commandLink action ="#{rentBean.bookByCategory(rentBean.book.category)}">
+	        	<h5>Category: <h:outputText value="#{rentBean.book.category.name}"/></h5>
+	        </h:commandLink>
+        </h:form>
+        
         <h5>Publisher: <h:outputText value="#{rentBean.book.publisher}"/></h5>
         <h5>Published: <h:outputText value="#{rentBean.book.publishingDate}"/></h5>
         <h5>Pages: <h:outputText value="#{rentBean.book.numberOfPages}"/></h5>
         <h5>ISBN: <h:outputText value="#{rentBean.book.isbn}"/></h5>
-        <h5>Author: <h:outputText value="#{rentBean.book.author.firstname}"/>&nbsp;<h:outputText value="#{rentBean.book.author.lastname}"/></h5>
+
+          
+        
         <h:form>
-        <h:commandLink action = "#{rentBean.rentBook(rentBean.book)}">
-         <h:outputText value="Rent book" />
-        </h:commandLink>
+        <h:commandButton value="Rent book" action="#{rentBean.rentBook(rentBean.book)}"></h:commandButton>
         </h:form>
+        
+        </div>
     </ui:define>
 </ui:composition>
 </html>
