@@ -2,10 +2,11 @@ package com.book.bookservice;
 
 import java.util.List;
 
+
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
@@ -17,11 +18,11 @@ import com.book.businessobject.Book;
 import com.book.businessobject.Category;
 import com.book.businessobject.Writer;
 
-@Stateful
+@Stateless
 //@RolesAllowed(value = {"visitor", "renter", "admin"})
 public class BookBean implements BookInterface {
 	
-		@PersistenceContext(name = "bookPU", type=PersistenceContextType.EXTENDED)
+		@PersistenceContext(name = "bookPU")
 		private EntityManager em;
 		
 		@Resource 
@@ -55,7 +56,7 @@ public class BookBean implements BookInterface {
 			if(!book.isRented())
 			{
 				book.setRented(true);
-				em.persist(book);
+				em.merge(book);
 				rentResult="You have rented this book!";
 			}
 			else
