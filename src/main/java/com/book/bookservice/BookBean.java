@@ -1,6 +1,8 @@
 package com.book.bookservice;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -55,6 +57,10 @@ public class BookBean implements BookInterface {
 			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.author.id=:authorid").setParameter("authorid", author.getId()).getResultList();
 		}
 	
+		public List<Soldbook> getAllSoldBooks()
+		{
+			return (List<Soldbook>) em.createQuery("SELECT sb FROM Soldbook sb").getResultList();
+		}
 		//@RolesAllowed(value = {"renter", "admin"})
 		//@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public String rent(Book book)
@@ -78,11 +84,8 @@ public class BookBean implements BookInterface {
 		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public void buyBook(Book book)
 		{
-			Soldbook s1 = new Soldbook(book.getTitle(), book.getPrice());
-			em.merge(s1);
-			
-			em.createQuery("DELETE FROM Book b where b.id=:id").setParameter("id", book.getId()).executeUpdate();
-			
+			Soldbook s1 = new Soldbook(book, new Date());
+			em.merge(s1);		
 		}
 		public List<Writer> getWriters() {
 			return em.createQuery("FROM Writer").getResultList();
