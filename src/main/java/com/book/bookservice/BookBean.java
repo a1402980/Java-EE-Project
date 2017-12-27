@@ -55,6 +55,10 @@ public class BookBean implements BookInterface {
 			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.author.id=:authorid").setParameter("authorid", author.getId()).getResultList();
 		}
 	
+		public List<Soldbook> getAllSoldBooks()
+		{
+			return (List<Soldbook>) em.createQuery("SELECT sb FROM Soldbook sb").getResultList();
+		}
 		//@RolesAllowed(value = {"renter", "admin"})
 		//@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public String rent(Book book)

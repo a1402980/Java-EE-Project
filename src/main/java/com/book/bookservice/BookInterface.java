@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import com.book.businessobject.Book;
 import com.book.businessobject.Category;
+import com.book.businessobject.Soldbook;
 import com.book.businessobject.Writer;
 
 
@@ -19,6 +20,8 @@ public interface BookInterface {
 	public List<Book> getAllBooksFromCategory(Category category);
 	
 	public List<Book> getAllBooksFromAuthor(Writer author);
+	
+	public List<Soldbook> getAllSoldBooks();
 	
 	public void addData();
 
