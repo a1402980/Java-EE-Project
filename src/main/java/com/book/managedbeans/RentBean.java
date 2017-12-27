@@ -140,13 +140,13 @@ public class RentBean {
 		this.rentResult = rentResult;
 	}
 	
-	public String getBookByAuthor(Writer author)
+	public String bookByAuthor(Writer author)
 	{
 		authorbooks = bI.getAllBooksFromAuthor(author);
 		return "booksByAuthor?faces-redirect=true";
 	}
 	
-	public String getBookByCategory(Category category)
+	public String bookByCategory(Category category)
 	{
 		categorybooks = bI.getAllBooksFromCategory(category);
 		return "booksByCategory?faces-redirect=true";
