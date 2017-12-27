@@ -32,6 +32,8 @@ public class Book {
 	private boolean isRented;
 	@Column(name="cover")
 	private String cover;
+	@Column(name="price")
+	private double price;
 	
 	@ManyToOne()
 	private Category category;
@@ -43,7 +45,7 @@ public class Book {
 
 	}
 	
-	public Book(String title, String isbn, String publisher, String publishingDate, int numberOfPages, boolean isRented, String cover)
+	public Book(String title, String isbn, String publisher, String publishingDate, int numberOfPages, boolean isRented, String cover, double price)
 	{
 		this.title = title;
 		this.isbn = isbn;
@@ -52,6 +54,7 @@ public class Book {
 		this.numberOfPages = numberOfPages;
 		this.isRented = isRented;
 		this.cover = cover;
+		this.price = price;
 	}
 
 	public Long getId() {
@@ -132,5 +135,13 @@ public class Book {
 
 	public void setAuthors(Writer author) {
 		this.author = author;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }
