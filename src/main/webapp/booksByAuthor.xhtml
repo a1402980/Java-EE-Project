@@ -8,7 +8,7 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
-		<ui:repeat value="#{rentBean.books}" var="book">
+		<ui:repeat value="#{rentBean.authorbooks}" var="book">
 			<div class="bookStyle">
 			<h:form>
 			<h:commandLink action = "#{rentBean.viewBook(book.id)}" > 
