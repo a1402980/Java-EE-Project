@@ -33,10 +33,10 @@ public class Book {
 	@Column(name="cover")
 	private String cover;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	private Category category;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	private Writer author;
 	
 	public Book(){

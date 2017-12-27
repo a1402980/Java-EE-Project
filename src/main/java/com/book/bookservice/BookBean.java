@@ -49,7 +49,7 @@ public class BookBean implements BookInterface {
 		//@RolesAllowed(value = {"renter", "admin"})
 		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public String rent(Book book)
-		{
+		{	
 			String rentResult;
 			
 			if(!book.isRented())
@@ -62,6 +62,7 @@ public class BookBean implements BookInterface {
 			{
 				rentResult="We are sorry. The book is already rented!";
 			}
+			
 			return rentResult;
 		}
 		public List<Writer> getWriters() {
@@ -143,6 +144,25 @@ public class BookBean implements BookInterface {
 			em.persist(c2);
 			em.persist(c3);
 			em.persist(c4);
+			
+			em.persist(w1);
+			em.persist(w2);
+			em.persist(w3);
+			em.persist(w4);
+			
+			em.persist(b1);
+			em.persist(b2);
+			em.persist(b3);
+			em.persist(b4);
+			em.persist(b5);
+			em.persist(b6);
+			em.persist(b7);
+			em.persist(b8);
+			em.persist(b9);
+			em.persist(b10);
+			em.persist(b11);
+
+			
 			
 		}
 	}

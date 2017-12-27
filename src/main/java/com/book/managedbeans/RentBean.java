@@ -33,9 +33,6 @@ public class RentBean {
 	public String getAllBooks()
 	{	
 		books = bI.getAllBooks();
-		System.out.println("************************************");
-		System.out.println("************************************");
-		System.out.println(books.size());
 		
 		return "bookList?faces-redirect=true";
 	}
