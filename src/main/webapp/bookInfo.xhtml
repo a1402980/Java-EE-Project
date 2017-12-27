@@ -14,7 +14,7 @@
         <h:graphicImage value="#{rentBean.book.cover}" styleClass="bookInfoCover"/>
         <h5>Price: <h:outputText value="#{rentBean.book.price}"/> $</h5>
         <h5>Rented: <h:outputText value="#{rentBean.book.rented}" styleClass="#{rentBean.book.rented}" /></h5>
-        <h5>Sold: <h:outputText value="#{rentBean.book.sold}" styleClass="#{rentBean.book.rented}" /></h5>
+        <h5>Sold: <h:outputText value="#{rentBean.book.sold}" /></h5>
         
          <h:form>
 	        <h:commandLink action = "#{rentBean.bookByAuthor(rentBean.book.author)}">       

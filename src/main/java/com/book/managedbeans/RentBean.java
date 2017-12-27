@@ -81,11 +81,7 @@ public class RentBean {
 	
 	public String buyBook(Book soldBook){
 		
-		if(!soldBook.isSold())
-		{
-			soldBook.setSold(true);
-			bI.buyBook(soldBook);
-		}
+		bI.buyBook(soldBook);
 		return "bookInfo?faces-redirect=true";
 	}
 	
