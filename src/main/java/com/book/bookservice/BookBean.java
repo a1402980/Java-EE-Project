@@ -1,5 +1,6 @@
 package com.book.bookservice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -9,14 +10,21 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
 import com.book.businessobject.Book;
 import com.book.businessobject.Category;
+import com.book.businessobject.Soldbook;
 import com.book.businessobject.Writer;
+import com.book.exception.BookException;
+
 
 @Stateless
 //@RolesAllowed(value = {"visitor", "renter", "admin"})
@@ -48,7 +56,7 @@ public class BookBean implements BookInterface {
 		}
 	
 		//@RolesAllowed(value = {"renter", "admin"})
-		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
+		//@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public String rent(Book book)
 		{	
 			String rentResult;
@@ -65,6 +73,16 @@ public class BookBean implements BookInterface {
 			}
 			
 			return rentResult;
+		}
+		
+		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
+		public void buyBook(Book book)
+		{
+			Soldbook s1 = new Soldbook(book.getTitle(), book.getPrice());
+			em.merge(s1);
+			
+			em.createQuery("DELETE FROM Book b where b.id=:id").setParameter("id", book.getId()).executeUpdate();
+			
 		}
 		public List<Writer> getWriters() {
 			return em.createQuery("FROM Writer").getResultList();
@@ -88,28 +106,28 @@ public class BookBean implements BookInterface {
 			
 			Category c1 = new Category("Fantasy");
 			Writer w1 = new Writer("J.K", "Rowling");
-			Book b1 = new Book("Harry Potter and the Philosopher's Stone", "I-1234567890", "Bloomsbury", "01-01-1997", 223, false, "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg");
-			Book b6 = new Book("Harry Potter and the Chamber of Secrets", "I-1234567890", "Bloomsbury", "01-01-1998", 223, false, "https://upload.wikimedia.org/wikipedia/en/5/5c/Harry_Potter_and_the_Chamber_of_Secrets.jpg");
-			Book b7 = new Book("Harry Potter and the Prisoner of Azkaban", "I-1234567890", "Bloomsbury", "01-01-1999", 223, false, "https://upload.wikimedia.org/wikipedia/en/a/a0/Harry_Potter_and_the_Prisoner_of_Azkaban.jpg");
-			Book b8 = new Book("Harry Potter and the Goblet of Fire", "I-1234567890", "Bloomsbury", "01-01-2000", 223, false, "https://upload.wikimedia.org/wikipedia/en/c/c7/Harry_Potter_and_the_Goblet_of_Fire.jpg");
-			Book b9 = new Book("Harry Potter and the Order of the Phoenix", "I-1234567890", "Bloomsbury", "01-01-2003", 223, false, "https://upload.wikimedia.org/wikipedia/en/7/70/Harry_Potter_and_the_Order_of_the_Phoenix.jpg");
-			Book b10 = new Book("Harry Potter and the Half-Blood Prince", "I-1234567890", "Bloomsbury", "01-01-2005", 223, false, "https://upload.wikimedia.org/wikipedia/en/f/f0/Harry_Potter_and_the_Half-Blood_Prince.jpg");
-			Book b11 = new Book("Harry Potter and the Deathly Hallows", "I-1234567890", "Bloomsbury", "01-01-2007", 223, false, "https://upload.wikimedia.org/wikipedia/en/a/a9/Harry_Potter_and_the_Deathly_Hallows.jpg");
+			Book b1 = new Book("Harry Potter and the Philosopher's Stone", "I-1234567890", "Bloomsbury", "01-01-1997", 223, false, "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg", 15.00);
+			Book b6 = new Book("Harry Potter and the Chamber of Secrets", "I-1234567890", "Bloomsbury", "01-01-1998", 223, false, "https://upload.wikimedia.org/wikipedia/en/5/5c/Harry_Potter_and_the_Chamber_of_Secrets.jpg", 14.50);
+			Book b7 = new Book("Harry Potter and the Prisoner of Azkaban", "I-1234567890", "Bloomsbury", "01-01-1999", 223, false, "https://upload.wikimedia.org/wikipedia/en/a/a0/Harry_Potter_and_the_Prisoner_of_Azkaban.jpg", 14.95);
+			Book b8 = new Book("Harry Potter and the Goblet of Fire", "I-1234567890", "Bloomsbury", "01-01-2000", 223, false, "https://upload.wikimedia.org/wikipedia/en/c/c7/Harry_Potter_and_the_Goblet_of_Fire.jpg", 9.95);
+			Book b9 = new Book("Harry Potter and the Order of the Phoenix", "I-1234567890", "Bloomsbury", "01-01-2003", 223, false, "https://upload.wikimedia.org/wikipedia/en/7/70/Harry_Potter_and_the_Order_of_the_Phoenix.jpg", 9.95);
+			Book b10 = new Book("Harry Potter and the Half-Blood Prince", "I-1234567890", "Bloomsbury", "01-01-2005", 223, false, "https://upload.wikimedia.org/wikipedia/en/f/f0/Harry_Potter_and_the_Half-Blood_Prince.jpg", 15.00);
+			Book b11 = new Book("Harry Potter and the Deathly Hallows", "I-1234567890", "Bloomsbury", "01-01-2007", 223, false, "https://upload.wikimedia.org/wikipedia/en/a/a9/Harry_Potter_and_the_Deathly_Hallows.jpg", 9.95);
 
 			
 			Category c2 = new Category("Romance");
 			Writer w2 = new Writer("Margaret", "Mitchell");
-			Book b2 = new Book("Gone with the Wind", "I-1234567", "Warner Books", "01-01-1936", 1037, true, "https://upload.wikimedia.org/wikipedia/en/6/6b/Gone_with_the_Wind_cover.jpg");
+			Book b2 = new Book("Gone with the Wind", "I-1234567", "Warner Books", "01-01-1936", 1037, true, "https://upload.wikimedia.org/wikipedia/en/6/6b/Gone_with_the_Wind_cover.jpg", 39.95);
 			
 			Category c3 = new Category("Fiction");
 			Writer w3 = new Writer("George", "Orwell");
-			Book b3 = new Book("Nineteen Eighty-Four", "I-1234567", "WSOY", "01-01-1949", 100, true, "https://upload.wikimedia.org/wikipedia/commons/6/6b/1984-Big-Brother.jpg");
-			Book b4 = new Book("Animal Farm", "I-1234567", "TAMMI", "01-01-1969", 126, false, "https://upload.wikimedia.org/wikipedia/commons/f/fb/Animal_Farm_-_1st_edition.jpg");
+			Book b3 = new Book("Nineteen Eighty-Four", "I-1234567", "WSOY", "01-01-1949", 100, true, "https://upload.wikimedia.org/wikipedia/commons/6/6b/1984-Big-Brother.jpg", 27.75);
+			Book b4 = new Book("Animal Farm", "I-1234567", "TAMMI", "01-01-1969", 126, false, "https://upload.wikimedia.org/wikipedia/commons/f/fb/Animal_Farm_-_1st_edition.jpg", 21.40);
 			
 			
 			Category c4 = new Category("Mystery");
 			Writer w4 = new Writer("Dan", "Brown");
-			Book b5 = new Book("The Da Vinci Code", "I-1234567", "OTAVA", "10-04-2003", 454, false, "https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg");
+			Book b5 = new Book("The Da Vinci Code", "I-1234567", "OTAVA", "10-04-2003", 454, false, "https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg", 50.40);
 			
 			//Harry potter series
 			w1.writeBook(b1);
