@@ -140,12 +140,17 @@ public class BookBean implements BookInterface {
 			Category c3 = new Category("Fiction");
 			Writer w3 = new Writer("George", "Orwell");
 			Book b3 = new Book("Nineteen Eighty-Four", "I-1234567", "WSOY", "01-01-1949", 100, true, "https://upload.wikimedia.org/wikipedia/commons/6/6b/1984-Big-Brother.jpg", 27.75, false);
-			Book b4 = new Book("Animal Farm", "I-1234567", "TAMMI", "01-01-1969", 126, false, "https://upload.wikimedia.org/wikipedia/commons/f/fb/Animal_Farm_-_1st_edition.jpg", 21.40, false);
+			Book b4 = new Book("Animal Farm", "I-1234567", "TAMMI", "01-01-1969", 126, false, "https://upload.wikimedia.org/wikipedia/commons/f/fb/Animal_Farm_-_1st_edition.jpg", 21.40, true);
 			
 			
 			Category c4 = new Category("Mystery");
 			Writer w4 = new Writer("Dan", "Brown");
-			Book b5 = new Book("The Da Vinci Code", "I-1234567", "OTAVA", "10-04-2003", 454, false, "https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg", 50.40, false);
+			Book b5 = new Book("The Da Vinci Code", "I-1234567", "OTAVA", "10-04-2003", 454, false, "https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg", 50.40, true);
+			
+			
+			Soldbook s1 = new Soldbook(b4, new Date());
+			Soldbook s2 = new Soldbook(b5, new Date());
+			
 			
 			//Harry potter series
 			w1.writeBook(b1);
@@ -187,7 +192,10 @@ public class BookBean implements BookInterface {
 			em.persist(w3);
 			em.persist(w4);
 			
-			em.persist(b1);
+			em.persist(s1);
+			em.persist(s2);
+			
+			/*em.persist(b1);
 			em.persist(b2);
 			em.persist(b3);
 			em.persist(b4);
@@ -197,7 +205,7 @@ public class BookBean implements BookInterface {
 			em.persist(b8);
 			em.persist(b9);
 			em.persist(b10);
-			em.persist(b11);
+			em.persist(b11);*/
 
 			
 			
