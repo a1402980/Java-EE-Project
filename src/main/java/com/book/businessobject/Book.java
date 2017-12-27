@@ -1,16 +1,11 @@
 package com.book.businessobject;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -52,7 +47,7 @@ public class Book {
 
 	}
 	
-	public Book(String title, String isbn, String publisher, String publishingDate, int numberOfPages, boolean isRented, String cover, double price)
+	public Book(String title, String isbn, String publisher, String publishingDate, int numberOfPages, boolean isRented, String cover, double price, boolean isSold)
 	{
 		this.title = title;
 		this.isbn = isbn;
@@ -62,6 +57,7 @@ public class Book {
 		this.isRented = isRented;
 		this.cover = cover;
 		this.price = price;
+		this.isSold = isSold;
 	}
 
 	public Long getId() {
