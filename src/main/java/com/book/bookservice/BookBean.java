@@ -21,7 +21,7 @@ import com.book.businessobject.Writer;
 
 
 @Stateless
-//@RolesAllowed(value = {"visitor", "renter", "admin"})
+@RolesAllowed(value = {"visitor", "renter", "admin"})
 public class BookBean implements BookInterface {
 	
 		@PersistenceContext(name = "bookPU")
@@ -37,6 +37,7 @@ public class BookBean implements BookInterface {
 			
 			return (Book) query.getSingleResult();
 		}
+		
 		public List<Book> getAllBooks()
 		{
 			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.isSold=false").getResultList();
@@ -48,7 +49,7 @@ public class BookBean implements BookInterface {
 		public List<Book> getAllBooksFromAuthor(Writer author) {
 			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.author.id=:authorid").setParameter("authorid", author.getId()).getResultList();
 		}
-	
+		@RolesAllowed(value = {"admin"})
 		public List<Soldbook> getAllSoldBooks()
 		{
 			return (List<Soldbook>) em.createQuery("SELECT sb FROM Soldbook sb").getResultList();
@@ -69,8 +70,7 @@ public class BookBean implements BookInterface {
 			return (double) em.createQuery("SELECT AVG(sb.book.price) FROM Soldbook sb").getSingleResult();
 		}
 		
-		//@RolesAllowed(value = {"renter", "admin"})
-		//@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
+		@RolesAllowed(value = {"renter", "admin"})
 		public String rent(Book book)
 		{	
 			String rentResult;
@@ -89,6 +89,7 @@ public class BookBean implements BookInterface {
 			return rentResult;
 		}
 		
+		@RolesAllowed(value = {"renter", "admin"})
 		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public void buyBook(Book soldBook)
 		{
@@ -115,6 +116,7 @@ public class BookBean implements BookInterface {
 		public Category getCategory(long categoryid) {
 			return (Category) em.createQuery("FROM Category c where c.id=:id").setParameter("id", categoryid).getSingleResult();
 		}
+		
 		public void addData()
 		{
 			em.createQuery("DELETE FROM Soldbook sb").executeUpdate();

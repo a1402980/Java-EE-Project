@@ -3,6 +3,7 @@ package com.book.managedbeans;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.security.RolesAllowed;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -21,6 +22,8 @@ public class RentBean {
 	private List<Soldbook> soldBooks;
 	private Book book;
 	private String rentResult = null;
+	private String buyResult = null;
+
 	private double totalSales;
 	private long totalCount;
 	private double averageSales;
@@ -53,7 +56,6 @@ public class RentBean {
 	public List<Book> getCategorybooks() {
 		return categorybooks;
 	}
-
 
 	public List<Soldbook> getSoldBooks(){
 		
@@ -151,5 +153,14 @@ public class RentBean {
 		categorybooks = bI.getAllBooksFromCategory(category);
 		return "booksByCategory?faces-redirect=true";
 	}
+	public String getBuyResult() {
+		return buyResult;
+	}
+
+
+	public void setBuyResult(String buyResult) {
+		this.buyResult = buyResult;
+	}
+
 
 }
