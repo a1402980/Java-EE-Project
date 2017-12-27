@@ -47,7 +47,7 @@ public class BookBean implements BookInterface {
 		}
 		public List<Book> getAllBooks()
 		{
-			return (List<Book>) em.createQuery("SELECT b FROM Book b").getResultList();
+			return (List<Book>) em.createQuery("SELECT b FROM Book b where b.isSold=false").getResultList();
 		}
 		
 		public List<Book> getAllBooksFromCategory(Category category) {
