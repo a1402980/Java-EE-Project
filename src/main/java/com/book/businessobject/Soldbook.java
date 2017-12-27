@@ -59,6 +59,14 @@ public class Soldbook {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public Timestamp getSolddate() {
+		return solddate;
+	}
+
+	public void setSolddate(Timestamp solddate) {
+		this.solddate = solddate;
+	}
 	
 	
 
