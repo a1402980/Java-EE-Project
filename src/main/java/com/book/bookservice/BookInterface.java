@@ -33,4 +33,6 @@ public interface BookInterface {
 	public Category getCategory(long categoryid);
 	
 	public String rent(Book book);
+	
+	public void buyBook(Book book);
 }

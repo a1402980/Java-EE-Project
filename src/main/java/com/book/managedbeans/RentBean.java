@@ -68,6 +68,12 @@ public class RentBean {
 		return "bookInfo?faces-redirect=true";
 	}
 	
+	public String buyBook(Book soldBook){
+		
+		bI.buyBook(soldBook);
+		return "bookList?faces-redirect=true";
+	}
+	
 	public String getRentResult() {
 		return rentResult;
 	}
