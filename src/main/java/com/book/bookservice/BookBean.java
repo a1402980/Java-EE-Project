@@ -90,10 +90,14 @@ public class BookBean implements BookInterface {
 		}
 		
 		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
-		public void buyBook(Book book)
+		public void buyBook(Book soldBook)
 		{
-			Soldbook s1 = new Soldbook(book, new Date());
-			em.persist(s1);
+			if(!soldBook.isSold())
+			{
+				soldBook.setSold(true);
+				Soldbook s1 = new Soldbook(soldBook, new Date());
+				em.merge(s1);
+			}
 		}
 		public List<Writer> getWriters() {
 			return em.createQuery("FROM Writer").getResultList();
