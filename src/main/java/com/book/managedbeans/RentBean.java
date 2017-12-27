@@ -19,6 +19,9 @@ public class RentBean {
 	private List<Soldbook> soldBooks;
 	private Book book;
 	private String rentResult = null;
+	private double totalSales;
+	private long totalCount;
+	private double averageSales;
 	
 	@PostConstruct
 	public void initialize() throws NamingException 
@@ -40,8 +43,14 @@ public class RentBean {
 	}
 
 	public List<Soldbook> getSoldBooks(){
+		
 		soldBooks = bI.getAllSoldBooks();
 		return soldBooks;
+	}
+	
+	public void setSoldBooks(List<Soldbook> soldBooks)
+	{
+		this.soldBooks = soldBooks;
 	}
 	public void setBooks(List<Book> books) {
 		this.books = books;
@@ -72,10 +81,43 @@ public class RentBean {
 	
 	public String buyBook(Book soldBook){
 		
-		bI.buyBook(soldBook);
-		return "bookList?faces-redirect=true";
+		if(!soldBook.isSold())
+		{
+			soldBook.setSold(true);
+			bI.buyBook(soldBook);
+		}
+		return "bookInfo?faces-redirect=true";
 	}
 	
+	public void setTotalSales(double totalSales) {
+		this.totalSales = totalSales;
+	}
+
+	public double getTotalSales()
+	{
+		totalSales = bI.getTotalSales();
+		return totalSales;
+	}
+	public long getTotalCount() {
+		
+		totalCount = bI.getTotalSoldbooks();
+		return totalCount;
+	}
+
+	public double getAverageSales() {
+		
+		averageSales = bI.getAverageSales();
+		return averageSales;
+	}
+
+	public void setTotalCount(long totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	public void setAverageSales(double averageSales) {
+		this.averageSales = averageSales;
+	}
+
 	public String getRentResult() {
 		return rentResult;
 	}
