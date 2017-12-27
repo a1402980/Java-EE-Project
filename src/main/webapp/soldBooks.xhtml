@@ -11,11 +11,15 @@
     	<b>Total sales: <h:outputText value="#{rentBean.rentResult}"/></b>
     	<b>Nr. of books sold: <h:outputText value="#{rentBean.rentResult}"/></b>
     	<b>Average price of book: <h:outputText value="#{rentBean.rentResult}"/></b>
-		<ui:repeat value="#{rentBean.books}" var="book">
-		           <h:outputText value="#{book.title}" />
+    	<br></br>
+    	<br></br>
+		<ui:repeat value="#{rentBean.soldBooks}" var="soldbook">
+		           <h:outputText value="#{soldbook.book.title}" />
 		           &nbsp;
-		           <h:outputText value="#{book.timestamp}" />
-		           <br></br>
+		           <h:outputText value="#{soldbook.solddate}" />
+		           &nbsp;
+		           <h:outputText value="#{soldbook.book.price}" />$
+		           <hr></hr>
 	     </ui:repeat>
 	     
     </ui:define>

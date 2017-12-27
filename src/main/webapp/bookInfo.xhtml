@@ -12,7 +12,7 @@
     	<h:outputText value="#{rentBean.rentResult}"/>
         <h1><h:outputText value="#{rentBean.book.title}"/></h1>
         <h:graphicImage value="#{rentBean.book.cover}" styleClass="bookInfoCover"/>
-        
+        <h5>Price: <h:outputText value="#{rentBean.book.price}"/> $</h5>
         <h5>Rented: <h:outputText value="#{rentBean.book.rented}" styleClass="#{rentBean.book.rented}" /></h5>
         
          <h:form>
@@ -37,7 +37,7 @@
         <h:form>
         <h:commandButton value="Rent book" action="#{rentBean.rentBook(rentBean.book)}"></h:commandButton>
         </h:form>
-        
+        <br></br>
         <h:form>
         <h:commandButton value="Buy book" action="#{rentBean.buyBook(rentBean.book)}"></h:commandButton>
         </h:form>

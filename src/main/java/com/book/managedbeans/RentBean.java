@@ -9,12 +9,14 @@ import javax.naming.NamingException;
 import com.book.bookservice.BookInterface;
 import com.book.businessobject.Book;
 import com.book.businessobject.Category;
+import com.book.businessobject.Soldbook;
 import com.book.businessobject.Writer;
 
 public class RentBean {
 	
 	private BookInterface bI;
 	private List<Book> books;
+	private List<Soldbook> soldBooks;
 	private Book book;
 	private String rentResult = null;
 	
@@ -30,16 +32,16 @@ public class RentBean {
 			bI.addData();
 		}
 	}
-	public String getAllBooks()
-	{	
-		//books = bI.getAllBooks();
-		
-		return "bookList?faces-redirect=true";
-	}
+
 	public List<Book> getBooks()
 	{	
 		books = bI.getAllBooks();
 		return books;
+	}
+
+	public List<Soldbook> getSoldBooks(){
+		soldBooks = bI.getAllSoldBooks();
+		return soldBooks;
 	}
 	public void setBooks(List<Book> books) {
 		this.books = books;
