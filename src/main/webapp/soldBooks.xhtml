@@ -8,9 +8,9 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
     <ui:define name="content">
-    	<b>Total sales: <h:outputText value="#{rentBean.totalSales}"/></b>&nbsp;&nbsp;
+    	<b>Total sales: <h:outputText value="#{rentBean.totalSales}"/>$</b>&nbsp;&nbsp;
     	<b>Nr. of books sold: <h:outputText value="#{rentBean.totalCount}"/></b>&nbsp;&nbsp;
-    	<b>Average price of book: <h:outputText value="#{rentBean.averageSales}"/></b>
+    	<b>Average price of book: <h:outputText value="#{rentBean.averageSales}"/>$</b>
     	<br></br>
     	<br></br>
 		<ui:repeat value="#{rentBean.soldBooks}" var="soldbook">

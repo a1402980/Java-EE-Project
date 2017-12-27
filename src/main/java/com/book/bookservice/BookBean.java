@@ -95,6 +95,8 @@ public class BookBean implements BookInterface {
 			if(!soldBook.isSold())
 			{
 				soldBook.setSold(true);
+				em.merge(soldBook);
+				
 				Soldbook s1 = new Soldbook(soldBook, new Date());
 				em.merge(s1);
 			}
