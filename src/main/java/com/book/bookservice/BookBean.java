@@ -53,6 +53,22 @@ public class BookBean implements BookInterface {
 		{
 			return (List<Soldbook>) em.createQuery("SELECT sb FROM Soldbook sb").getResultList();
 		}
+		
+		public double getTotalSales()
+		{
+			return (double) em.createQuery("SELECT SUM(sb.book.price) FROM Soldbook sb").getSingleResult();
+		}
+		
+		public long getTotalSoldbooks()
+		{
+			return (long) em.createQuery("SELECT COUNT(sb) FROM Soldbook sb").getSingleResult();
+		}
+		
+		public double getAverageSales()
+		{
+			return (double) em.createQuery("SELECT AVG(sb.book.price) FROM Soldbook sb").getSingleResult();
+		}
+		
 		//@RolesAllowed(value = {"renter", "admin"})
 		//@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public String rent(Book book)
@@ -76,12 +92,8 @@ public class BookBean implements BookInterface {
 		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
 		public void buyBook(Book book)
 		{
-			if(!book.isSold())
-			{
-				book.setSold(true);
-				Soldbook s1 = new Soldbook(book, new Date());
-				em.merge(s1);	
-			}
+			Soldbook s1 = new Soldbook(book, new Date());
+			em.persist(s1);
 		}
 		public List<Writer> getWriters() {
 			return em.createQuery("FROM Writer").getResultList();

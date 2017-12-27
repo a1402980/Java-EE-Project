@@ -23,6 +23,12 @@ public interface BookInterface {
 	
 	public List<Soldbook> getAllSoldBooks();
 	
+	public double getTotalSales();
+	
+	public long getTotalSoldbooks();
+	
+	public double getAverageSales();
+	
 	public void addData();
 
 	//void transfer(Account compteSrc, Account compteDest, int montant) throws Exception;
