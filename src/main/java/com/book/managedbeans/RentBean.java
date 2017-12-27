@@ -16,6 +16,8 @@ public class RentBean {
 	
 	private BookInterface bI;
 	private List<Book> books;
+	private List<Book> authorbooks;
+	private List<Book> categorybooks;
 	private List<Soldbook> soldBooks;
 	private Book book;
 	private String rentResult = null;
@@ -35,12 +37,23 @@ public class RentBean {
 			bI.addData();
 		}
 	}
+	
 
 	public List<Book> getBooks()
 	{	
 		books = bI.getAllBooks();
 		return books;
 	}
+
+	public List<Book> getAuthorbooks() {
+		return authorbooks;
+	}
+
+
+	public List<Book> getCategorybooks() {
+		return categorybooks;
+	}
+
 
 	public List<Soldbook> getSoldBooks(){
 		
@@ -121,15 +134,15 @@ public class RentBean {
 		this.rentResult = rentResult;
 	}
 	
-	public String bookByAuthor(Writer author)
+	public String getBookByAuthor(Writer author)
 	{
-		books = bI.getAllBooksFromAuthor(author);
+		authorbooks = bI.getAllBooksFromAuthor(author);
 		return "booksByAuthor?faces-redirect=true";
 	}
 	
-	public String bookByCategory(Category category)
+	public String getBookByCategory(Category category)
 	{
-		books = bI.getAllBooksFromCategory(category);
+		categorybooks = bI.getAllBooksFromCategory(category);
 		return "booksByCategory?faces-redirect=true";
 	}
 
