@@ -32,13 +32,13 @@ public class RentBean {
 	}
 	public String getAllBooks()
 	{	
-		books = bI.getAllBooks();
+		//books = bI.getAllBooks();
 		
 		return "bookList?faces-redirect=true";
 	}
 	public List<Book> getBooks()
-	{
-
+	{	
+		books = bI.getAllBooks();
 		return books;
 	}
 	public void setBooks(List<Book> books) {
