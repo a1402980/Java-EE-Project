@@ -75,13 +75,19 @@ public class RentBean {
 	
 	public String rentBook(Book rentedBook){
 		
-		this.rentResult = bI.rent(rentedBook);
+		if(!rentedBook.isSold())
+		{
+			this.rentResult = bI.rent(rentedBook);
+		}
 		return "bookInfo?faces-redirect=true";
 	}
 	
 	public String buyBook(Book soldBook){
 		
-		bI.buyBook(soldBook);
+		if(!soldBook.isRented())
+		{
+			bI.buyBook(soldBook);
+		}
 		return "bookInfo?faces-redirect=true";
 	}
 	
