@@ -38,7 +38,6 @@ public class RentBean {
 	}
 	public List<Book> getBooks()
 	{
-
 		return books;
 	}
 	public void setBooks(List<Book> books) {
