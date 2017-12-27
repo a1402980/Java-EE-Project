@@ -1,5 +1,8 @@
 package com.book.businessobject;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -34,13 +38,16 @@ public class Book {
 	private String cover;
 	@Column(name="price")
 	private double price;
+	@Column(name="sold")
+	private boolean isSold;
 	
-	@ManyToOne()
+	@ManyToOne
 	private Category category;
 	
-	@ManyToOne()
+	@ManyToOne
 	private Writer author;
 	
+
 	public Book(){
 
 	}
@@ -143,5 +150,13 @@ public class Book {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public boolean isSold() {
+		return isSold;
+	}
+
+	public void setSold(boolean isSold) {
+		this.isSold = isSold;
 	}
 }

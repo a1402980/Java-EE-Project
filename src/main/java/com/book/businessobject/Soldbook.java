@@ -1,13 +1,18 @@
 package com.book.businessobject;
 
 import java.security.Timestamp;
+import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Soldbook")
@@ -17,56 +22,40 @@ public class Soldbook {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
-	@Column(name="title")
-	private String title;
-	
-	@Column(name="price")
-	private double price;
-	
 	@Column(name="date")
-	private Timestamp solddate;
+	private Date solddate;
 
+	@ManyToOne
+	private Book book;
+	
 	public Soldbook()
 	{
 		
 	}
-	
-	public Soldbook(String title, double price)
+	public Soldbook(Book book, Date solddate)
 	{
-		this.title = title;
-		this.price = price;
+		this.book = book;
+		this.solddate = solddate;
 	}
 	public Long getId() {
 		return id;
 	}
-
-	public String getTitle() {
-		return title;
+	public Date getSolddate() {
+		return solddate;
 	}
-
+	public Book getBook() {
+		return book;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public Timestamp getSolddate() {
-		return solddate;
-	}
-
-	public void setSolddate(Timestamp solddate) {
+	public void setSolddate(Date solddate) {
 		this.solddate = solddate;
 	}
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
 	
 	
 
