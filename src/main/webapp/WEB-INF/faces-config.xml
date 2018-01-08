@@ -13,6 +13,7 @@
 		<display-name>welcomePage.xhtml</display-name>
 		<from-view-id>/welcomePage.xhtml</from-view-id>
 		<navigation-case>
+			<from-outcome>bookList</from-outcome>
 			<to-view-id>/bookList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
@@ -60,6 +61,7 @@
 		<display-name>welcomePage.xhtml</display-name>
 		<from-view-id>/welcomePage.xhtml</from-view-id>
 		<navigation-case>
+			<from-outcome>soldBooks</from-outcome>
 			<to-view-id>/soldBooks.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>

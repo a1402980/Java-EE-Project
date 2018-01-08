@@ -91,8 +91,9 @@ public class BookBean implements BookInterface {
 		
 		@RolesAllowed(value = {"renter", "admin"})
 		@TransactionAttribute(value=TransactionAttributeType.REQUIRED)
-		public void buyBook(Book soldBook)
+		public String buyBook(Book soldBook)
 		{
+			String buyResult;
 			if(!soldBook.isSold())
 			{
 				soldBook.setSold(true);
@@ -100,7 +101,13 @@ public class BookBean implements BookInterface {
 				
 				Soldbook s1 = new Soldbook(soldBook, new Date());
 				em.merge(s1);
+				buyResult = "You have bought this book!";
 			}
+			else
+			{
+				buyResult = "We are sorry. You cannot buy this book!";
+			}
+			return buyResult;
 		}
 		public List<Writer> getWriters() {
 			return em.createQuery("FROM Writer").getResultList();

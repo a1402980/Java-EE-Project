@@ -43,5 +43,5 @@ public interface BookInterface {
 	
 	public String rent(Book book);
 	
-	public void buyBook(Book book);
+	public String buyBook(Book book);
 }

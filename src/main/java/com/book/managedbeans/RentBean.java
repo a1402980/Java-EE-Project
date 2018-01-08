@@ -77,6 +77,8 @@ public class RentBean {
 	
 	public String viewBook(long bookId)
 	{
+		rentResult = null;
+		buyResult = null;
 		book = bI.getBookById(bookId);
 		return "bookInfo?faces-redirect=true";
 	}
@@ -92,7 +94,7 @@ public class RentBean {
 		
 		if(!rentedBook.isSold())
 		{
-			this.rentResult = bI.rent(rentedBook);
+			rentResult = bI.rent(rentedBook);
 		}
 		return "bookInfo?faces-redirect=true";
 	}
@@ -101,7 +103,11 @@ public class RentBean {
 		
 		if(!soldBook.isRented())
 		{
-			bI.buyBook(soldBook);
+			buyResult = bI.buyBook(soldBook);
+		}
+		else
+		{
+			buyResult = "You cannot buy a book that is rented!";
 		}
 		return "bookInfo?faces-redirect=true";
 	}

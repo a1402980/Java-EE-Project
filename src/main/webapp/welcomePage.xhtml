@@ -11,10 +11,14 @@
         <h:outputLabel value="Welcome to Amazing library"></h:outputLabel>
         <br></br>
         <br></br>
-		<h:link value = "Browse books"  outcome = "bookList" />
+        <h:form>
+		<h:commandLink value = "Browse books"  action = "bookList" />
+		</h:form>
         <br></br>
 		<br></br>
-        <h:link value = "Sold books"  outcome = "soldBooks" />
+		<h:form>
+        <h:commandLink value = "Sold books"  action = "soldBooks" />
+        </h:form>
         <br></br>
         <br></br>
         <h:form>
