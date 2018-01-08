@@ -13,7 +13,6 @@
 		<display-name>welcomePage.xhtml</display-name>
 		<from-view-id>/welcomePage.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>#{rentBean.getAllBooks}</from-outcome>
 			<to-view-id>/bookList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
@@ -55,6 +54,13 @@
 		<navigation-case>
 			<from-outcome>#{rentBean.viewBook(book.id)}</from-outcome>
 			<to-view-id>/bookInfo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>welcomePage.xhtml</display-name>
+		<from-view-id>/welcomePage.xhtml</from-view-id>
+		<navigation-case>
+			<to-view-id>/soldBooks.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
